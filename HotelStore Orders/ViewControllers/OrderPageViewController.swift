@@ -14,6 +14,7 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     let model = DataModel.sharedData
     
     //MARK:- OUTLETS
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var orderLabel: UILabel!
     @IBOutlet weak var numberLabel: UILabel!
@@ -26,12 +27,38 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     @IBOutlet weak var buttonView: UIView!
     @IBOutlet weak var statusLabel: UILabel!
     
+    @IBOutlet weak var productsTable: UITableView!
+    @IBOutlet weak var totalPriceLabel: UILabel!
+    @IBOutlet weak var saveButton: UIButton!
     
+    @IBOutlet weak var tableHeight: NSLayoutConstraint!
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        productsTable.estimatedRowHeight = 200
+        productsTable.rowHeight = UITableView.automaticDimension
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerTableViewCells()
         setLabels()
+        setConstraints()
         setShadow()
+        saveButton.layer.cornerRadius = 22.5
+    }
+    
+    private func registerTableViewCells() {
+        productsTable.delegate = self
+        productsTable.dataSource = self
+        let orderCell = UINib(nibName: "ProductCell",
+                                  bundle: nil)
+        self.productsTable.register(orderCell,
+                                forCellReuseIdentifier: "ProductCell")
+        productsTable.rowHeight = UITableView.automaticDimension
+        productsTable.tableFooterView = UIView(frame: .zero)
+        
+        tableHeight.constant = self.productsTable.contentSize.height * CGFloat(model.orders[orderNumber].products.count) + 15
     }
     
     private func setLabels(){
@@ -54,6 +81,15 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             statusLabel.textColor = UIColor(red: 182/255, green: 9/255, blue: 73/255, alpha: 1)
         }
         statusLabel.text = model.orders[orderNumber].status
+        setPrice()
+    }
+    
+    private func setPrice(){
+        var totalPrice: Double = 0
+        for product in model.orders[orderNumber].products{
+            totalPrice = totalPrice + product.price * Double(product.QTY)
+        }
+        totalPriceLabel.text =  "\(totalPrice)"
     }
     
     private func setShadow(){
@@ -74,6 +110,12 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     var toolBar = UIToolbar()
     var picker  = UIPickerView()
+    
+    
+    @IBAction func saveTapped(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+        model.orders[orderNumber].status = statusLabel.text ?? ""
+    }
     
     @IBAction func statusTapped(_ sender: Any) {
         picker = UIPickerView.init()
@@ -109,12 +151,53 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        model.orders[orderNumber].status = pickerData[row]
-        if model.orders[orderNumber].status == "New" {
+        statusLabel.text = pickerData[row]
+        if statusLabel.text == "New" {
             statusLabel.textColor = UIColor(red: 182/255, green: 9/255, blue: 73/255, alpha: 1)
         } else {
             statusLabel.textColor = UIColor.black
         }
-        statusLabel.text = model.orders[orderNumber].status
+        statusLabel.text = pickerData[row]
     }
+    
+    //MARK:- CONSTRAINTS
+    
+    @IBOutlet weak var const1: NSLayoutConstraint!
+    @IBOutlet weak var const2: NSLayoutConstraint!
+    @IBOutlet weak var const3: NSLayoutConstraint!
+    @IBOutlet weak var const4: NSLayoutConstraint!
+    
+    private func setConstraints(){
+        const1.constant = self.view.frame.width * 0.107
+        const2.constant = self.view.frame.width * 0.114
+        const3.constant = self.view.frame.width * 0.226
+        const4.constant = self.view.frame.width * 0.077
+    }
+}
+
+extension OrderPageViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return model.orders[orderNumber].products.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell") as? ProductCell {
+            cell.numberLabel.text = "\(indexPath.row + 1)"
+            cell.brandLabel.text = model.orders[orderNumber].products[indexPath.row].brand
+            cell.titleLabel.text = model.orders[orderNumber].products[indexPath.row].title
+            cell.qtyLabel.text = "\(model.orders[orderNumber].products[indexPath.row].QTY)"
+            cell.priceLabel.text = "\(model.orders[orderNumber].products[indexPath.row].price)"
+            cell.lengthDescr.constant = self.view.frame.width * 0.3
+            cell.lengthBrand.constant = self.view.frame.width * 0.1313
+            cell.lengthPrice.constant = self.view.frame.width * 0.07
+            cell.titleLabel.adjustsFontSizeToFitWidth = true
+            cell.brandLabel.adjustsFontSizeToFitWidth = true
+            cell.priceLabel.adjustsFontSizeToFitWidth = true
+            return cell
+        } else {
+            return UITableViewCell()
+        }
+    }
+    
+    
 }

@@ -19,6 +19,8 @@
 		EB363BA624EBE66F00D59B1E /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB363BA424EBE66F00D59B1E /* OrderCell.swift */; };
 		EB363BA724EBE66F00D59B1E /* OrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB363BA524EBE66F00D59B1E /* OrderCell.xib */; };
 		EB363BA924EBF37800D59B1E /* OrderPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB363BA824EBF37800D59B1E /* OrderPageViewController.swift */; };
+		EB363BAC24EC172D00D59B1E /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB363BAA24EC172D00D59B1E /* ProductCell.swift */; };
+		EB363BAD24EC172D00D59B1E /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB363BAB24EC172D00D59B1E /* ProductCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		EB363BA424EBE66F00D59B1E /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		EB363BA524EBE66F00D59B1E /* OrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderCell.xib; sourceTree = "<group>"; };
 		EB363BA824EBF37800D59B1E /* OrderPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPageViewController.swift; sourceTree = "<group>"; };
+		EB363BAA24EC172D00D59B1E /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		EB363BAB24EC172D00D59B1E /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,8 @@
 				EB363B9D24EBAB0A00D59B1E /* Extensions.swift */,
 				EB363BA424EBE66F00D59B1E /* OrderCell.swift */,
 				EB363BA524EBE66F00D59B1E /* OrderCell.xib */,
+				EB363BAA24EC172D00D59B1E /* ProductCell.swift */,
+				EB363BAB24EC172D00D59B1E /* ProductCell.xib */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -169,6 +175,7 @@
 			files = (
 				EB363B9424EB94F500D59B1E /* LaunchScreen.storyboard in Resources */,
 				EB363B9124EB94F500D59B1E /* Assets.xcassets in Resources */,
+				EB363BAD24EC172D00D59B1E /* ProductCell.xib in Resources */,
 				EB363BA724EBE66F00D59B1E /* OrderCell.xib in Resources */,
 				EB363B8F24EB94ED00D59B1E /* Main.storyboard in Resources */,
 			);
@@ -187,6 +194,7 @@
 				EB363BA624EBE66F00D59B1E /* OrderCell.swift in Sources */,
 				EB363B8824EB94ED00D59B1E /* AppDelegate.swift in Sources */,
 				EB363B8A24EB94ED00D59B1E /* SceneDelegate.swift in Sources */,
+				EB363BAC24EC172D00D59B1E /* ProductCell.swift in Sources */,
 				EB363B9E24EBAB0A00D59B1E /* Extensions.swift in Sources */,
 				EB363BA324EBDD1500D59B1E /* DataModel.swift in Sources */,
 			);

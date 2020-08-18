@@ -16,6 +16,10 @@ class OrdersViewController: UIViewController{
     @IBOutlet weak var ordersLabel: UILabel!
     @IBOutlet weak var hotelNameLabel: UILabel!
     
+    override func viewWillAppear(_ animated: Bool) {
+        orderTable.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setLabels()
