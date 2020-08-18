@@ -9,21 +9,33 @@
 /* Begin PBXBuildFile section */
 		EB363B8824EB94ED00D59B1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB363B8724EB94ED00D59B1E /* AppDelegate.swift */; };
 		EB363B8A24EB94ED00D59B1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB363B8924EB94ED00D59B1E /* SceneDelegate.swift */; };
-		EB363B8C24EB94ED00D59B1E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB363B8B24EB94ED00D59B1E /* ViewController.swift */; };
+		EB363B8C24EB94ED00D59B1E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB363B8B24EB94ED00D59B1E /* LoginViewController.swift */; };
 		EB363B8F24EB94ED00D59B1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB363B8D24EB94ED00D59B1E /* Main.storyboard */; };
 		EB363B9124EB94F500D59B1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB363B9024EB94F500D59B1E /* Assets.xcassets */; };
 		EB363B9424EB94F500D59B1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB363B9224EB94F500D59B1E /* LaunchScreen.storyboard */; };
+		EB363B9E24EBAB0A00D59B1E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB363B9D24EBAB0A00D59B1E /* Extensions.swift */; };
+		EB363BA024EBB52A00D59B1E /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB363B9F24EBB52A00D59B1E /* OrdersViewController.swift */; };
+		EB363BA324EBDD1500D59B1E /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB363BA224EBDD1500D59B1E /* DataModel.swift */; };
+		EB363BA624EBE66F00D59B1E /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB363BA424EBE66F00D59B1E /* OrderCell.swift */; };
+		EB363BA724EBE66F00D59B1E /* OrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB363BA524EBE66F00D59B1E /* OrderCell.xib */; };
+		EB363BA924EBF37800D59B1E /* OrderPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB363BA824EBF37800D59B1E /* OrderPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EB363B8424EB94ED00D59B1E /* HotelStore Orders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HotelStore Orders.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB363B8724EB94ED00D59B1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB363B8924EB94ED00D59B1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EB363B8B24EB94ED00D59B1E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EB363B8B24EB94ED00D59B1E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EB363B8E24EB94ED00D59B1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EB363B9024EB94F500D59B1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB363B9324EB94F500D59B1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB363B9524EB94F500D59B1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB363B9D24EBAB0A00D59B1E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		EB363B9F24EBB52A00D59B1E /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
+		EB363BA224EBDD1500D59B1E /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		EB363BA424EBE66F00D59B1E /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
+		EB363BA524EBE66F00D59B1E /* OrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderCell.xib; sourceTree = "<group>"; };
+		EB363BA824EBF37800D59B1E /* OrderPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +68,45 @@
 		EB363B8624EB94ED00D59B1E /* HotelStore Orders */ = {
 			isa = PBXGroup;
 			children = (
+				EB363BA124EBDCFD00D59B1E /* Model */,
+				EB363B9C24EBAAF500D59B1E /* Service */,
+				EB363B9B24EBAAEB00D59B1E /* ViewControllers */,
 				EB363B8724EB94ED00D59B1E /* AppDelegate.swift */,
 				EB363B8924EB94ED00D59B1E /* SceneDelegate.swift */,
-				EB363B8B24EB94ED00D59B1E /* ViewController.swift */,
 				EB363B8D24EB94ED00D59B1E /* Main.storyboard */,
 				EB363B9024EB94F500D59B1E /* Assets.xcassets */,
 				EB363B9224EB94F500D59B1E /* LaunchScreen.storyboard */,
 				EB363B9524EB94F500D59B1E /* Info.plist */,
 			);
 			path = "HotelStore Orders";
+			sourceTree = "<group>";
+		};
+		EB363B9B24EBAAEB00D59B1E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				EB363B8B24EB94ED00D59B1E /* LoginViewController.swift */,
+				EB363B9F24EBB52A00D59B1E /* OrdersViewController.swift */,
+				EB363BA824EBF37800D59B1E /* OrderPageViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		EB363B9C24EBAAF500D59B1E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				EB363B9D24EBAB0A00D59B1E /* Extensions.swift */,
+				EB363BA424EBE66F00D59B1E /* OrderCell.swift */,
+				EB363BA524EBE66F00D59B1E /* OrderCell.xib */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		EB363BA124EBDCFD00D59B1E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EB363BA224EBDD1500D59B1E /* DataModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +169,7 @@
 			files = (
 				EB363B9424EB94F500D59B1E /* LaunchScreen.storyboard in Resources */,
 				EB363B9124EB94F500D59B1E /* Assets.xcassets in Resources */,
+				EB363BA724EBE66F00D59B1E /* OrderCell.xib in Resources */,
 				EB363B8F24EB94ED00D59B1E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,9 +181,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB363B8C24EB94ED00D59B1E /* ViewController.swift in Sources */,
+				EB363BA924EBF37800D59B1E /* OrderPageViewController.swift in Sources */,
+				EB363BA024EBB52A00D59B1E /* OrdersViewController.swift in Sources */,
+				EB363B8C24EB94ED00D59B1E /* LoginViewController.swift in Sources */,
+				EB363BA624EBE66F00D59B1E /* OrderCell.swift in Sources */,
 				EB363B8824EB94ED00D59B1E /* AppDelegate.swift in Sources */,
 				EB363B8A24EB94ED00D59B1E /* SceneDelegate.swift in Sources */,
+				EB363B9E24EBAB0A00D59B1E /* Extensions.swift in Sources */,
+				EB363BA324EBDD1500D59B1E /* DataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +335,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NA6VF3HCZ5;
 				INFOPLIST_FILE = "HotelStore Orders/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -294,7 +343,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "ss.HotelStore-Orders";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -305,6 +354,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NA6VF3HCZ5;
 				INFOPLIST_FILE = "HotelStore Orders/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -312,7 +362,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "ss.HotelStore-Orders";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
