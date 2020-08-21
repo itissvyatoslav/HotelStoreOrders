@@ -31,10 +31,8 @@ class OrderCell: UITableViewCell {
     
     //MARK:- CONSTRAINTS
     
-    @IBOutlet weak var cons1: NSLayoutConstraint!
+    @IBOutlet weak var cons58: NSLayoutConstraint!
     @IBOutlet weak var cons2: NSLayoutConstraint!
     @IBOutlet weak var cons3: NSLayoutConstraint!
-    @IBOutlet weak var cons4: NSLayoutConstraint!
-    @IBOutlet weak var cons5: NSLayoutConstraint!
     
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Locksmith
 
 @available(iOS 13.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -15,10 +16,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        let loadedData = Locksmith.loadDataForUserAccount(userAccount: "myUserAccount") ?? ["token": "default token"]
+        DataModel.sharedData.token = loadedData["token"] as! String? ?? "default token"
+        print(DataModel.sharedData.token)
+        DataModel.sharedData.token = "default token"
+        if DataModel.sharedData.token != "default token" {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController (withIdentifier: "startID") as! UINavigationController
+            window = UIWindow(windowScene: windowScene)
+            window?.rootViewController = vc
+            window?.makeKeyAndVisible()
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

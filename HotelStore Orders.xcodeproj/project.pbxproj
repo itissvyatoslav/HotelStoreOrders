@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A51C2DE2FA10A66F057A139C /* Pods_HotelStore_Orders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558E216C3683BE2FEC855D57 /* Pods_HotelStore_Orders.framework */; };
 		EB363B8824EB94ED00D59B1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB363B8724EB94ED00D59B1E /* AppDelegate.swift */; };
 		EB363B8A24EB94ED00D59B1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB363B8924EB94ED00D59B1E /* SceneDelegate.swift */; };
 		EB363B8C24EB94ED00D59B1E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB363B8B24EB94ED00D59B1E /* LoginViewController.swift */; };
@@ -21,9 +22,13 @@
 		EB363BA924EBF37800D59B1E /* OrderPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB363BA824EBF37800D59B1E /* OrderPageViewController.swift */; };
 		EB363BAC24EC172D00D59B1E /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB363BAA24EC172D00D59B1E /* ProductCell.swift */; };
 		EB363BAD24EC172D00D59B1E /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB363BAB24EC172D00D59B1E /* ProductCell.xib */; };
+		EB86E99F24ECFD22004B6C72 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB86E99E24ECFD22004B6C72 /* NetworkService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A7C13A649D45DA2A49A14F4 /* Pods-HotelStore Orders.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HotelStore Orders.release.xcconfig"; path = "Target Support Files/Pods-HotelStore Orders/Pods-HotelStore Orders.release.xcconfig"; sourceTree = "<group>"; };
+		558E216C3683BE2FEC855D57 /* Pods_HotelStore_Orders.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HotelStore_Orders.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B5948E03743B2CEB65E41B9 /* Pods-HotelStore Orders.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HotelStore Orders.debug.xcconfig"; path = "Target Support Files/Pods-HotelStore Orders/Pods-HotelStore Orders.debug.xcconfig"; sourceTree = "<group>"; };
 		EB363B8424EB94ED00D59B1E /* HotelStore Orders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HotelStore Orders.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB363B8724EB94ED00D59B1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB363B8924EB94ED00D59B1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +45,7 @@
 		EB363BA824EBF37800D59B1E /* OrderPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPageViewController.swift; sourceTree = "<group>"; };
 		EB363BAA24EC172D00D59B1E /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		EB363BAB24EC172D00D59B1E /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
+		EB86E99E24ECFD22004B6C72 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,17 +53,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A51C2DE2FA10A66F057A139C /* Pods_HotelStore_Orders.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF9A7DAE63CEA0AD412F323D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				558E216C3683BE2FEC855D57 /* Pods_HotelStore_Orders.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C18C319E742A98995ECBCEE6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6B5948E03743B2CEB65E41B9 /* Pods-HotelStore Orders.debug.xcconfig */,
+				2A7C13A649D45DA2A49A14F4 /* Pods-HotelStore Orders.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		EB363B7B24EB94ED00D59B1E = {
 			isa = PBXGroup;
 			children = (
 				EB363B8624EB94ED00D59B1E /* HotelStore Orders */,
 				EB363B8524EB94ED00D59B1E /* Products */,
+				C18C319E742A98995ECBCEE6 /* Pods */,
+				BF9A7DAE63CEA0AD412F323D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +129,7 @@
 				EB363BA524EBE66F00D59B1E /* OrderCell.xib */,
 				EB363BAA24EC172D00D59B1E /* ProductCell.swift */,
 				EB363BAB24EC172D00D59B1E /* ProductCell.xib */,
+				EB86E99E24ECFD22004B6C72 /* NetworkService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -122,9 +149,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB363B9824EB94F500D59B1E /* Build configuration list for PBXNativeTarget "HotelStore Orders" */;
 			buildPhases = (
+				B8E18EEB44DE63BEE8557A6E /* [CP] Check Pods Manifest.lock */,
 				EB363B8024EB94ED00D59B1E /* Sources */,
 				EB363B8124EB94ED00D59B1E /* Frameworks */,
 				EB363B8224EB94ED00D59B1E /* Resources */,
+				E9394A84160D649A7CCE36F5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -183,11 +212,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B8E18EEB44DE63BEE8557A6E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HotelStore Orders-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E9394A84160D649A7CCE36F5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HotelStore Orders/Pods-HotelStore Orders-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HotelStore Orders/Pods-HotelStore Orders-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HotelStore Orders/Pods-HotelStore Orders-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EB363B8024EB94ED00D59B1E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB86E99F24ECFD22004B6C72 /* NetworkService.swift in Sources */,
 				EB363BA924EBF37800D59B1E /* OrderPageViewController.swift in Sources */,
 				EB363BA024EBB52A00D59B1E /* OrdersViewController.swift in Sources */,
 				EB363B8C24EB94ED00D59B1E /* LoginViewController.swift in Sources */,
@@ -338,17 +410,20 @@
 		};
 		EB363B9924EB94F500D59B1E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B5948E03743B2CEB65E41B9 /* Pods-HotelStore Orders.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NA6VF3HCZ5;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = 2UW772375M;
 				INFOPLIST_FILE = "HotelStore Orders/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ss.HotelStore-Orders";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = svyatoslav.hotelstore.order;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -357,17 +432,20 @@
 		};
 		EB363B9A24EB94F500D59B1E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A7C13A649D45DA2A49A14F4 /* Pods-HotelStore Orders.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NA6VF3HCZ5;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = 2UW772375M;
 				INFOPLIST_FILE = "HotelStore Orders/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ss.HotelStore-Orders";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = svyatoslav.hotelstore.order;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

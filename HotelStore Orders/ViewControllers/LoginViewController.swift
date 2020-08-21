@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Locksmith
 
 class LoginViewController: UIViewController {
 
@@ -21,6 +22,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTF: UITextField!
     
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var activityView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +30,8 @@ class LoginViewController: UIViewController {
         setLabels()
         setGesture()
         setButton()
+        activityView.layer.cornerRadius = 10
+        activityView.isHidden = true
     }
     
     private func setLabels(){
@@ -47,13 +51,33 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginTapped(_ sender: Any) {
-        if loginTF.text == "Test" && passwordTF.text == "Test"{
-            if #available(iOS 13.0, *) {
-                let vc = storyboard?.instantiateViewController(identifier: "OrdersViewController") as! OrdersViewController
-                self.navigationController?.pushViewController(vc, animated: true)
+        activityView.isHidden = false
+        DispatchQueue.main.async {
+            if NetworkService().login(login: self.loginTF.text ?? "", password: self.passwordTF.text ?? ""){
+                if #available(iOS 13.0, *) {
+                    let vc = self.storyboard?.instantiateViewController(identifier: "OrdersViewController") as! OrdersViewController
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    self.saveToken()
+                }
+            } else {
+                self.activityView.isHidden = true
+                self.alertWindow(title: "Try again", message: "Wrong login or password")
             }
-        } else {
-            alertWindow(title: "Try again", message: "Wrong login or password")
+        }
+    }
+    
+    private func saveToken(){
+        do {
+            try Locksmith.saveData(data: ["token": DataModel.sharedData.token], forUserAccount: "myUserAccount")
+            print("save")
+        } catch {
+            print("SAVE ERROR")
+        }
+        do {
+            try Locksmith.updateData(data: ["token": DataModel.sharedData.token], forUserAccount: "myUserAccount")
+            print("update")
+        } catch {
+            print("UPDATE ERROR")
         }
     }
     
