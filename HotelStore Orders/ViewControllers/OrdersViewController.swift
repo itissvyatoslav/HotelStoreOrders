@@ -27,7 +27,9 @@ class OrdersViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     override func viewDidLoad() {
-        NetworkService().getOrders()
+        if model.orders.isEmpty {
+            NetworkService().getOrders()
+        }
         super.viewDidLoad()
         setLabels()
         setConstraints()

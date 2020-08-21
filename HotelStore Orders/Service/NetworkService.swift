@@ -72,13 +72,13 @@ class NetworkService {
         return success
     }
     
-    func getOrders(){
+    func getOrders() -> Bool {
         
         struct orderStruct: Codable {
-            var data: [dataStruct]
+            var data: [dataStruct]?
             var message: String?
             var success: Bool
-            var total: Int
+            var total: Int?
         }
         
         struct dataStruct: Codable {
@@ -138,6 +138,8 @@ class NetworkService {
             var name: String
         }
         
+        var success = false
+        
         let semaphore = DispatchSemaphore (value: 0)
         var request = URLRequest(url: URL(string: "\(urlMain)api/order")!,timeoutInterval: Double.infinity)
         
@@ -152,30 +154,33 @@ class NetworkService {
             do {
                 let json = try JSONDecoder().decode(orderStruct.self, from: data)
                 self.model.orders.removeAll()
-                for number in 0..<json.data.count {
-                    self.model.addOrder.comment = json.data[number].comment
-                    self.model.addOrder.number = json.data[number].position
-                    self.model.addOrder.date = json.data[number].date
-                    self.model.addOrder.time = json.data[number].time
-                    self.model.addOrder.userName = json.data[number].customer.first_name
-                    self.model.addOrder.roomNumber = json.data[number].room
-                    self.model.addOrder.status = json.data[number].status
-                    self.model.addOrder.hotelName = json.data[number].hotel.name
-                    if !self.model.hotels.contains(json.data[number].hotel.name) {
-                        print(json.data[number].position)
-                        self.model.hotels.append(json.data[number].hotel.name)
+                if !(json.data?.isEmpty ?? true) {
+                    for number in 0..<json.data!.count {
+                        self.model.addOrder.comment = json.data![number].comment
+                        self.model.addOrder.number = json.data![number].position
+                        self.model.addOrder.date = json.data![number].date
+                        self.model.addOrder.time = json.data![number].time
+                        self.model.addOrder.userName = json.data![number].customer.first_name
+                        self.model.addOrder.roomNumber = json.data![number].room
+                        self.model.addOrder.status = json.data![number].status
+                        self.model.addOrder.hotelName = json.data![number].hotel.name
+                        if !self.model.hotels.contains(json.data![number].hotel.name) {
+                            self.model.hotels.append(json.data![number].hotel.name)
+                        }
+                        self.model.addOrder.products.removeAll()
+                        for subNumber in 0..<json.data![number].cart.count {
+                            self.model.addProduct.brand = json.data![number].cart[subNumber].product.brand
+                            self.model.addProduct.title = json.data![number].cart[subNumber].product.title
+                            self.model.addProduct.QTY = json.data![number].cart[subNumber].quantity
+                            self.model.addProduct.price = json.data![number].cart[subNumber].product.price
+                            self.model.addOrder.products.append(self.model.addProduct)
+                        }
+                        self.model.orders.append(self.model.addOrder)
                     }
-                    self.model.addOrder.products.removeAll()
-                    for subNumber in 0..<json.data[number].cart.count {
-                        self.model.addProduct.brand = json.data[number].cart[subNumber].product.brand
-                        self.model.addProduct.title = json.data[number].cart[subNumber].product.title
-                        self.model.addProduct.QTY = json.data[number].cart[subNumber].quantity
-                        self.model.addProduct.price = json.data[number].cart[subNumber].product.price
-                        self.model.addOrder.products.append(self.model.addProduct)
-                    }
-                    self.model.orders.append(self.model.addOrder)
+                    
+                    self.model.hotelName = json.data![0].hotel.name
                 }
-                self.model.hotelName = json.data[0].hotel.name
+                success = json.success
             } catch {
                 print(error)
             }
@@ -183,5 +188,6 @@ class NetworkService {
         }
         task.resume()
         semaphore.wait()
+        return success
     }
 }
