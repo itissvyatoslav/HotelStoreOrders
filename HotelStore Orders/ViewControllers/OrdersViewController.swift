@@ -24,6 +24,7 @@ class OrdersViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     override func viewWillAppear(_ animated: Bool) {
         orderTable.reloadData()
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewDidLoad() {
@@ -35,7 +36,8 @@ class OrdersViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         setConstraints()
         registerTableViewCells()
         model.editedOrders = model.orders
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "subTextColor")
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     private func setLabels(){

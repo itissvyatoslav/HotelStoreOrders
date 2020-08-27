@@ -17,8 +17,7 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     //MARK:- OUTLETS
     @IBOutlet weak var scrollView: UIScrollView!
-    
-    @IBOutlet weak var orderLabel: UILabel!
+
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -40,6 +39,7 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     override func viewWillAppear(_ animated: Bool) {
         productsTable.estimatedRowHeight = 200
         productsTable.rowHeight = UITableView.automaticDimension
+        self.navigationItem.backBarButtonItem?.title = ""
     }
     
     override func viewDidLoad() {
@@ -52,7 +52,9 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         let distance = saveButton.frame.minY - view.frame.minY
         print(distance)
         scrollView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: distance + 50)
-       
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationItem.title = "ORDER"
+        
         scrollHeight.constant = distance - 1000
     }
     
@@ -70,7 +72,6 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     private func setLabels(){
-        orderLabel.addCharacterSpacing(kernValue: 1.05)
         numberLabel.addCharacterSpacing(kernValue: 1.05)
         dateLabel.addCharacterSpacing(kernValue: 1.05)
         timeLabel.addCharacterSpacing(kernValue: 1.05)
@@ -106,10 +107,6 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         buttonView.layer.shadowOpacity = 1
         buttonView.layer.shadowOffset = .zero
         buttonView.layer.shadowRadius = 20
-    }
-    
-    @IBAction func backTapped(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
     }
     
      //MARK:- UIPICKERVIEW
