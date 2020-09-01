@@ -332,6 +332,40 @@ class NetworkService {
 
         task.resume()
         semaphore.wait()
+    }
+    
+    func logout(){
+        let semaphore = DispatchSemaphore (value: 0)
+        guard let url = URL(string: "\(urlMain)api/logout") else {
+            print("url error")
+            return
+        }
 
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue(model.token, forHTTPHeaderField: "token")
+        
+        let config = URLSessionConfiguration.default
+        let additionalHeaders = [
+            "Accept": "application/json",
+            "cache-control": "no-cache"
+        ]
+        config.httpAdditionalHeaders = additionalHeaders
+
+        let session = URLSession.init(configuration: config)
+        session.dataTask(with: request){(data, response, error)  in
+            guard let data = data else {
+                print("data error")
+                return
+            }
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: [])
+                print(json)
+            } catch {
+                print(error)
+            }
+            semaphore.signal()
+        }.resume()
+        semaphore.wait()
     }
 }

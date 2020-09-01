@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Locksmith
 
 extension UILabel {
     func addCharacterSpacing(kernValue: Double = 1.15) {
@@ -31,5 +32,42 @@ extension UIViewController {
                 alertController.dismiss(animated: true, completion: nil)
         }))
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func alertLogout(){
+        // Declare Alert message
+        let dialogMessage = UIAlertController(title: "Log out", message: "Do you want to log out?", preferredStyle: .alert)
+        
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
+            NetworkService().logout()
+            DataModel.sharedData.token = "default token"
+            DataModel.sharedData.access = ""
+            do {
+                try Locksmith.updateData(data: ["token": DataModel.sharedData.token, "access": DataModel.sharedData.access], forUserAccount: "myUserAccount")
+                print("update")
+            } catch {
+                print("error")
+            }
+            if #available(iOS 13.0, *) {
+                let vc = self.storyboard?.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+                vc.navigationItem.hidesBackButton = true
+                
+            }
+            
+        })
+        
+        // Create Cancel button with action handlder
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            print("Cancel button tapped")
+        }
+        
+        //Add OK and Cancel button to dialog message
+        dialogMessage.addAction(ok)
+        dialogMessage.addAction(cancel)
+        
+        // Present dialog message to user
+        self.present(dialogMessage, animated: true, completion: nil)
     }
 }

@@ -153,6 +153,11 @@ class OrdersViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         }
         
     }
+    
+    @IBAction func moreTapped(_ sender: Any) {
+        alertLogout()
+    }
+    
 }
 
 extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
