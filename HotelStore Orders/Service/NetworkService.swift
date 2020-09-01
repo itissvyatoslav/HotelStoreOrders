@@ -156,6 +156,7 @@ class NetworkService {
                 self.model.orders.removeAll()
                 if !(json.data?.isEmpty ?? true) {
                     for number in 0..<json.data!.count {
+                        self.model.addOrder.id = json.data![number].id
                         self.model.addOrder.comment = json.data![number].comment
                         self.model.addOrder.number = json.data![number].position
                         self.model.addOrder.date = json.data![number].date
@@ -189,5 +190,148 @@ class NetworkService {
         task.resume()
         semaphore.wait()
         return success
+    }
+    
+    func regPushes(device_token: String) {
+
+        let semaphore = DispatchSemaphore (value: 0)
+        guard let url = URL(string: "\(urlMain)api/checkdevice") else {
+            print("url error")
+            return
+        }
+        let parametrs = ["device_id": device_token, "device_os": "iOS"]
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue(model.token, forHTTPHeaderField: "token")
+        
+        let config = URLSessionConfiguration.default
+        let additionalHeaders = [
+            "Accept": "application/json",
+            "cache-control": "no-cache"
+        ]
+        config.httpAdditionalHeaders = additionalHeaders
+        
+        let postString = parametrs.compactMap{(key, value) -> String in
+            return "\(key)=\(value)"
+        }.joined(separator: "&")
+        request.httpBody = postString.data(using: .utf8)
+
+        let session = URLSession.init(configuration: config)
+        session.dataTask(with: request){(data, response, error)  in
+            guard let data = data else {
+                print("data error")
+                return
+            }
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: [])
+                print(json)
+            } catch {
+                print(error)
+            }
+            semaphore.signal()
+        }.resume()
+        semaphore.wait()
+    }
+    
+    func changeStatus(id: Int, status: String){
+        let semaphore = DispatchSemaphore (value: 0)
+        guard let url = URL(string: "\(urlMain)api/order") else {
+            print("url error")
+            return
+        }
+        let parametrs = ["id": "\(id)", "status": status]
+        print(id, status)
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.addValue(model.token, forHTTPHeaderField: "token")
+        
+        let config = URLSessionConfiguration.default
+        let additionalHeaders = [
+            "cache-control": "no-cache"
+        ]
+        config.httpAdditionalHeaders = additionalHeaders
+        
+        let postString = parametrs.compactMap{(key, value) -> String in
+            return "\(key)=\(value)"
+        }.joined(separator: "&")
+        request.httpBody = postString.data(using: .utf8)
+
+        let session = URLSession.init(configuration: config)
+        session.dataTask(with: request){(data, response, error)  in
+            guard let data = data else {
+                print("data error")
+                return
+            }
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: [])
+                print(json)
+            } catch {
+                print(error)
+            }
+            semaphore.signal()
+        }.resume()
+        semaphore.wait()
+    }
+    
+    func changeStatus2(id: Int, status: String) {
+        var semaphore = DispatchSemaphore (value: 0)
+
+        let parameters = [
+          [
+            "key": "id",
+            "value": "\(id)",
+            "type": "text"
+          ],
+          [
+            "key": "status",
+            "value": status,
+            "type": "text"
+          ]] as [[String : Any]]
+
+        let boundary = "Boundary-\(UUID().uuidString)"
+        var body = ""
+        var error: Error? = nil
+        for param in parameters {
+          if param["disabled"] == nil {
+            let paramName = param["key"]!
+            body += "--\(boundary)\r\n"
+            body += "Content-Disposition:form-data; name=\"\(paramName)\""
+            let paramType = param["type"] as! String
+            if paramType == "text" {
+              let paramValue = param["value"] as! String
+              body += "\r\n\r\n\(paramValue)\r\n"
+            } else {
+              let paramSrc = param["src"] as! String
+              let fileData = try? NSData(contentsOfFile:paramSrc, options:[]) as Data
+              let fileContent = String(data: fileData!, encoding: .utf8)!
+              body += "; filename=\"\(paramSrc)\"\r\n"
+                + "Content-Type: \"content-type header\"\r\n\r\n\(fileContent)\r\n"
+            }
+          }
+        }
+        body += "--\(boundary)--\r\n";
+        let postData = body.data(using: .utf8)
+
+        var request = URLRequest(url: URL(string: "https://crm.hotelstore.sg/api/order")!,timeoutInterval: Double.infinity)
+        request.addValue(model.token, forHTTPHeaderField: "token")
+        request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+
+        request.httpMethod = "PUT"
+        request.httpBody = postData
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+          guard let data = data else {
+            print(String(describing: error))
+            return
+          }
+          print(String(data: data, encoding: .utf8)!)
+          semaphore.signal()
+        }
+
+        task.resume()
+        semaphore.wait()
+
     }
 }

@@ -130,6 +130,7 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             }
             index = index + 1
         }
+        NetworkService().changeStatus2(id: model.orders[orderNumber].number, status: model.orders[index].status)
     }
     
 
