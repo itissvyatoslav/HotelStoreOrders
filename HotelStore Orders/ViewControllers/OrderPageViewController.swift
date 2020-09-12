@@ -118,7 +118,7 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     var toolBar = UIToolbar()
     var picker  = UIPickerView()
     
-    
+    //MARK: - SAVE
     @IBAction func saveTapped(_ sender: Any) {
         navigationController?.popViewController(animated: true)
         model.editedOrders[orderNumber].status = statusLabel.text ?? ""
@@ -130,7 +130,7 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             }
             index = index + 1
         }
-        NetworkService().changeStatus2(id: model.orders[orderNumber].number, status: model.orders[index].status)
+        NetworkService().changeStatus2(id: model.orders[orderNumber].id, status: model.orders[index].status, manager_id: model.orders[orderNumber].manager_id)
     }
     
 

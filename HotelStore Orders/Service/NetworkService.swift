@@ -58,6 +58,9 @@ class NetworkService {
                 return
             }
             do {
+                let json1 = try JSONSerialization.jsonObject(with: data, options: [])
+                print(json1)
+                
                 let json = try JSONDecoder().decode(loginStruct.self, from: data)
                 self.model.token = json.data.token
                 self.model.idProfile = json.data.id
@@ -102,6 +105,13 @@ class NetworkService {
             var quantity: Int
         }
         
+        struct cartStruct2: Codable {
+            var id: Int?
+            var order: Int
+            var product: productStruct2
+            var quantity: Int
+        }
+        
         struct productStruct: Codable {
             var brand: String
             var category: String?
@@ -113,6 +123,11 @@ class NetworkService {
             var quantity: Int?
             var short_description: String?
             var title: String
+        }
+        
+        struct productStruct2: Codable {
+            var id: Int
+            var message: String
         }
         
         struct imageStruct: Codable {
@@ -141,7 +156,7 @@ class NetworkService {
         var success = false
         
         let semaphore = DispatchSemaphore (value: 0)
-        var request = URLRequest(url: URL(string: "\(urlMain)api/order")!,timeoutInterval: Double.infinity)
+        var request = URLRequest(url: URL(string: "\(urlMain)api/order?page=1")!,timeoutInterval: Double.infinity)
         
         request.httpMethod = "GET"
         request.addValue(model.token, forHTTPHeaderField: "token")
@@ -152,10 +167,14 @@ class NetworkService {
                 return
             }
             do {
+                let json2 = try JSONSerialization.jsonObject(with: data, options: [])
+                print(json2)
+                
                 let json = try JSONDecoder().decode(orderStruct.self, from: data)
                 self.model.orders.removeAll()
                 if !(json.data?.isEmpty ?? true) {
                     for number in 0..<json.data!.count {
+                        self.model.addOrder.manager_id = json.data![number].manager?.id ?? -1
                         self.model.addOrder.id = json.data![number].id
                         self.model.addOrder.comment = json.data![number].comment
                         self.model.addOrder.number = json.data![number].position
@@ -275,24 +294,30 @@ class NetworkService {
         semaphore.wait()
     }
     
-    func changeStatus2(id: Int, status: String) {
+    func changeStatus2(id: Int, status: String, manager_id: Int) {
         var semaphore = DispatchSemaphore (value: 0)
 
         let parameters = [
-          [
-            "key": "id",
-            "value": "\(id)",
-            "type": "text"
-          ],
-          [
-            "key": "status",
-            "value": status,
-            "type": "text"
-          ]] as [[String : Any]]
+            [
+                "key": "id",
+                "value": "\(id)",
+                "type": "text"
+            ],
+            [
+                "key": "status",
+                "value": status,
+                "type": "text"
+            ],
+            [
+                "key": "manager_id",
+                "value": "\(manager_id)",
+                "type": "text"
+            ]] as [[String : Any]]
 
         let boundary = "Boundary-\(UUID().uuidString)"
         var body = ""
         var error: Error? = nil
+        print(parameters)
         for param in parameters {
           if param["disabled"] == nil {
             let paramName = param["key"]!

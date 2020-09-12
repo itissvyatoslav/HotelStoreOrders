@@ -17,6 +17,7 @@ class DataModel {
     var access = ""
     
     struct orderStruct {
+        var manager_id: Int
         var id: Int
         var number: Int
         var date: String
@@ -37,7 +38,7 @@ class DataModel {
     }
     
     var addProduct = productStruct(brand: "", title: "", QTY: 0, price: 0)
-    var addOrder = orderStruct(id: 0, number: 0, date: "", time: "", userName: "", roomNumber: "", comment: "", status: "", products: [], hotelName: "")
+    var addOrder = orderStruct(manager_id: 0, id: 0, number: 0, date: "", time: "", userName: "", roomNumber: "", comment: "", status: "", products: [], hotelName: "")
     var orders = [orderStruct]()
     var editedOrders = [orderStruct]()
     var hotels = [String]()

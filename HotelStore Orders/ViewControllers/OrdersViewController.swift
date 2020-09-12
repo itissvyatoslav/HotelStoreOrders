@@ -53,14 +53,24 @@ class OrdersViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     private func registerTableViewCells() {
+        refreshControl.tintColor = UIColor(red:182/255, green:9/255, blue:73/255, alpha:1.0)
+        orderTable.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(updateOrders(_:)), for: .valueChanged)
         orderTable.delegate = self
         orderTable.dataSource = self
         let orderCell = UINib(nibName: "OrderCell",
-                                  bundle: nil)
+                              bundle: nil)
         self.orderTable.register(orderCell,
                                 forCellReuseIdentifier: "OrderCell")
         orderTable.rowHeight = UITableView.automaticDimension
         orderTable.tableFooterView = UIView(frame: .zero)
+    }
+    
+    @objc private func updateOrders(_ sender: Any) {
+        if NetworkService().getOrders() {
+            orderTable.reloadData()
+        }
+        self.refreshControl.endRefreshing()
     }
     
     //MARK:- CONSTRAINTS
@@ -157,6 +167,10 @@ class OrdersViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBAction func moreTapped(_ sender: Any) {
         alertLogout()
     }
+    
+    //MARK:- UPDATE TABLE
+    
+    private let refreshControl = UIRefreshControl()
     
 }
 

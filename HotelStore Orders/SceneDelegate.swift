@@ -18,9 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        let loadedData = Locksmith.loadDataForUserAccount(userAccount: "myUserAccount") ?? ["token": "default token", "access": DataModel.sharedData.access]
+        let loadedData = Locksmith.loadDataForUserAccount(userAccount: "myUserAccount") ?? ["token": "default token", "access": DataModel.sharedData.access, "manager_id": DataModel.sharedData.idProfile]
         DataModel.sharedData.token = loadedData["token"] as! String? ?? "default token"
         DataModel.sharedData.access = loadedData["access"] as! String? ?? "default access"
+        DataModel.sharedData.idProfile = loadedData["manager_id"] as! Int? ?? 0
         print(DataModel.sharedData.token)
         //DataModel.sharedData.token = "default"
         if DataModel.sharedData.token != "default token" && NetworkService().getOrders() {

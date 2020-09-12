@@ -238,7 +238,7 @@
                                 <rect key="frame" x="379" y="98" width="30" height="46"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <state key="normal" title="⋮">
-                                    <color key="titleColor" red="0.08235294118" green="0.086274509799999996" blue="0.086274509799999996" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    <color key="titleColor" name="textColor"/>
                                 </state>
                                 <connections>
                                     <action selector="moreTapped:" destination="73E-r2-f7y" eventType="touchUpInside" id="aAN-hd-ADa"/>

@@ -43,8 +43,9 @@ extension UIViewController {
             NetworkService().logout()
             DataModel.sharedData.token = "default token"
             DataModel.sharedData.access = ""
+            DataModel.sharedData.idProfile = 0
             do {
-                try Locksmith.updateData(data: ["token": DataModel.sharedData.token, "access": DataModel.sharedData.access], forUserAccount: "myUserAccount")
+                try Locksmith.updateData(data: ["token": DataModel.sharedData.token, "access": DataModel.sharedData.access, "manager_id": DataModel.sharedData.idProfile], forUserAccount: "myUserAccount")
                 print("update")
             } catch {
                 print("error")

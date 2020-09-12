@@ -68,13 +68,13 @@ class LoginViewController: UIViewController {
     
     private func saveToken(){
         do {
-            try Locksmith.saveData(data: ["token": DataModel.sharedData.token, "access": DataModel.sharedData.access], forUserAccount: "myUserAccount")
+            try Locksmith.saveData(data: ["token": DataModel.sharedData.token, "access": DataModel.sharedData.access, "manager_id": DataModel.sharedData.idProfile], forUserAccount: "myUserAccount")
             print("save")
         } catch {
             print("SAVE ERROR")
         }
         do {
-            try Locksmith.updateData(data: ["token": DataModel.sharedData.token, "access": DataModel.sharedData.access], forUserAccount: "myUserAccount")
+            try Locksmith.updateData(data: ["token": DataModel.sharedData.token, "access": DataModel.sharedData.access, "manager_id": DataModel.sharedData.idProfile], forUserAccount: "myUserAccount")
             print("update")
         } catch {
             print("UPDATE ERROR")
