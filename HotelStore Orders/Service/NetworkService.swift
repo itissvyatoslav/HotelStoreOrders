@@ -12,6 +12,7 @@ class NetworkService {
     let model = DataModel.sharedData
     
     var urlMain = "https://crm.hotelstore.sg/"
+    var urlTest = "http://176.119.157.195:8080/"
 
     struct loginStruct: Codable {
         var data: dataStruct
@@ -167,9 +168,6 @@ class NetworkService {
                 return
             }
             do {
-                let json2 = try JSONSerialization.jsonObject(with: data, options: [])
-                print(json2)
-                
                 let json = try JSONDecoder().decode(orderStruct.self, from: data)
                 self.model.orders.removeAll()
                 if !(json.data?.isEmpty ?? true) {

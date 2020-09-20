@@ -158,13 +158,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nf2-ra-Cw0">
-                                <rect key="frame" x="339.5" y="111" width="39.5" height="19.5"/>
+                                <rect key="frame" x="329.5" y="111" width="39.5" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="geo" translatesAutoresizingMaskIntoConstraints="NO" id="Wah-08-f5i">
-                                <rect key="frame" x="320.5" y="112" width="13" height="17.5"/>
+                                <rect key="frame" x="310.5" y="112" width="13" height="17.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Wah-08-f5i" secondAttribute="height" multiplier="11:15" id="MRp-Iw-bqI"/>
                                     <constraint firstAttribute="width" constant="13" id="phH-9q-eiv"/>
@@ -229,15 +229,18 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SUS-5F-EVt">
-                                <rect key="frame" x="320.5" y="106" width="58.5" height="30"/>
+                                <rect key="frame" x="310.5" y="106" width="58.5" height="30"/>
                                 <connections>
                                     <action selector="hotelAction:" destination="73E-r2-f7y" eventType="touchUpInside" id="3bt-vb-wxW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yik-Fi-vK5">
-                                <rect key="frame" x="379" y="98" width="30" height="46"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <state key="normal" title="⋮">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yik-Fi-vK5">
+                                <rect key="frame" x="369" y="101" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="TlT-NG-dBU"/>
+                                    <constraint firstAttribute="height" constant="40" id="h1y-03-2kd"/>
+                                </constraints>
+                                <state key="normal" image="arrowshape.turn.up.left.circle.fill" catalog="system">
                                     <color key="titleColor" name="textColor"/>
                                 </state>
                                 <connections>
@@ -251,7 +254,6 @@
                             <constraint firstItem="fVy-mn-gd7" firstAttribute="top" secondItem="7pf-wE-Ifh" secondAttribute="bottom" constant="21" id="4MC-ZN-xHP"/>
                             <constraint firstItem="SUS-5F-EVt" firstAttribute="trailing" secondItem="nf2-ra-Cw0" secondAttribute="trailing" id="6QJ-D1-X6g"/>
                             <constraint firstItem="hAK-cN-peN" firstAttribute="trailing" secondItem="xlb-Rb-jw5" secondAttribute="trailing" id="9rC-iX-9RR"/>
-                            <constraint firstItem="yik-Fi-vK5" firstAttribute="leading" secondItem="nf2-ra-Cw0" secondAttribute="trailing" id="Cqp-CB-K9w"/>
                             <constraint firstItem="fVy-mn-gd7" firstAttribute="leading" secondItem="hAK-cN-peN" secondAttribute="leading" id="EUd-F1-hD8"/>
                             <constraint firstItem="xlb-Rb-jw5" firstAttribute="leading" secondItem="hAK-cN-peN" secondAttribute="leading" id="FK7-aI-MCo"/>
                             <constraint firstItem="hAK-cN-peN" firstAttribute="trailing" secondItem="fVy-mn-gd7" secondAttribute="trailing" id="Jg6-KH-l8f"/>
@@ -259,6 +261,7 @@
                             <constraint firstItem="hAK-cN-peN" firstAttribute="bottom" secondItem="xlb-Rb-jw5" secondAttribute="bottom" id="Ngv-Ra-82Q"/>
                             <constraint firstItem="yik-Fi-vK5" firstAttribute="centerY" secondItem="SUS-5F-EVt" secondAttribute="centerY" id="SgT-TQ-lvV"/>
                             <constraint firstItem="7pf-wE-Ifh" firstAttribute="top" secondItem="hAK-cN-peN" secondAttribute="top" constant="20" id="VRe-UD-xFf"/>
+                            <constraint firstItem="yik-Fi-vK5" firstAttribute="leading" secondItem="nf2-ra-Cw0" secondAttribute="trailing" id="XDt-hc-byF"/>
                             <constraint firstItem="nf2-ra-Cw0" firstAttribute="centerY" secondItem="7pf-wE-Ifh" secondAttribute="centerY" id="ZuX-a5-vZI"/>
                             <constraint firstItem="7pf-wE-Ifh" firstAttribute="leading" secondItem="hAK-cN-peN" secondAttribute="leading" constant="24" id="dGf-4o-WwW"/>
                             <constraint firstItem="SUS-5F-EVt" firstAttribute="leading" secondItem="Wah-08-f5i" secondAttribute="leading" id="kIP-Sa-bWR"/>
@@ -277,6 +280,7 @@
                         <outlet property="cons5" destination="MB1-op-HKt" id="Nwj-uA-dOj"/>
                         <outlet property="hotelButton" destination="SUS-5F-EVt" id="MgI-I4-r2h"/>
                         <outlet property="hotelNameLabel" destination="nf2-ra-Cw0" id="C34-Ef-RcS"/>
+                        <outlet property="logoutButton" destination="yik-Fi-vK5" id="ENs-vt-cf2"/>
                         <outlet property="orderTable" destination="xlb-Rb-jw5" id="VcR-sH-vtq"/>
                         <outlet property="ordersLabel" destination="7pf-wE-Ifh" id="ihZ-QK-Kgi"/>
                     </connections>
@@ -655,6 +659,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrowshape.turn.up.left.circle.fill" catalog="system" width="128" height="121"/>
         <image name="buttonStatus" width="10" height="8"/>
         <image name="geo" width="22" height="30"/>
         <image name="separator" width="192" height="2"/>

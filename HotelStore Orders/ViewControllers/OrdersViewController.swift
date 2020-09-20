@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SocketIO
 
 class OrdersViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
     
@@ -21,6 +22,8 @@ class OrdersViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBOutlet weak var orderTable: UITableView!
     @IBOutlet weak var ordersLabel: UILabel!
     @IBOutlet weak var hotelNameLabel: UILabel!
+    @IBOutlet weak var logoutButton: UIButton!
+    
     
     override func viewWillAppear(_ animated: Bool) {
         orderTable.reloadData()
@@ -32,6 +35,7 @@ class OrdersViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             NetworkService().getOrders()
         }
         super.viewDidLoad()
+        socketManager()
         setLabels()
         setConstraints()
         registerTableViewCells()
@@ -49,7 +53,7 @@ class OrdersViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             hotelNameLabel.text = model.hotelName
             hotelButton.isHidden = true
         }
-        
+        logoutButton.tintColor = UIColor(named: "subTextColor")
     }
     
     private func registerTableViewCells() {
@@ -68,7 +72,11 @@ class OrdersViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     @objc private func updateOrders(_ sender: Any) {
         if NetworkService().getOrders() {
+            model.editedOrders = model.orders
             orderTable.reloadData()
+            if model.access == "admin" {
+                hotelNameLabel.text = "All hotels"
+            }
         }
         self.refreshControl.endRefreshing()
     }
@@ -166,6 +174,38 @@ class OrdersViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     @IBAction func moreTapped(_ sender: Any) {
         alertLogout()
+    }
+    
+    //MARK:- Socket
+    
+    var manager:SocketManager!
+    var socketIOClient: SocketIOClient!
+    
+    func socketManager(){
+        manager = SocketManager(socketURL: URL(string: "https://crm.hotelstore.sg")!, config: [.log(true), .compress])
+        socketIOClient = manager.socket(forNamespace: "/notifs")
+        
+        socketIOClient.on(clientEvent: .connect) {data, ack in
+            print(data)
+            print("socket connected")
+        }
+        
+        socketIOClient.on(clientEvent: .error) { (data, eck) in
+            print("!!!", data)
+            print("socket error")
+        }
+        
+        socketIOClient.on(clientEvent: .disconnect) { (data, eck) in
+            print(data)
+            print("socket disconnect")
+        }
+        
+        socketIOClient.on(clientEvent: SocketClientEvent.reconnect) { (data, eck) in
+            print(data)
+            print("socket reconnect")
+        }
+        
+        socketIOClient.connect()
     }
     
     //MARK:- UPDATE TABLE
