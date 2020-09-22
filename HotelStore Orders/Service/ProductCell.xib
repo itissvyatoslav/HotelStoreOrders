@@ -48,9 +48,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g6E-mX-38A">
-                        <rect key="frame" x="302" y="16.5" width="10" height="19.5"/>
+                        <rect key="frame" x="302" y="16.5" width="30" height="19.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="10" id="7fE-9z-7dq"/>
+                            <constraint firstAttribute="width" constant="30" id="7fE-9z-7dq"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
@@ -70,7 +70,7 @@
                     <constraint firstItem="iKL-cM-ej1" firstAttribute="leading" secondItem="wno-uj-c78" secondAttribute="trailing" constant="16" id="7Qt-B9-uv0"/>
                     <constraint firstItem="kBK-E1-M8P" firstAttribute="centerY" secondItem="g6E-mX-38A" secondAttribute="centerY" id="OyY-Hh-1U1"/>
                     <constraint firstItem="wno-uj-c78" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="PMk-EZ-kIq"/>
-                    <constraint firstItem="kBK-E1-M8P" firstAttribute="leading" secondItem="g6E-mX-38A" secondAttribute="trailing" constant="80" id="QXU-FD-8UR"/>
+                    <constraint firstItem="kBK-E1-M8P" firstAttribute="leading" secondItem="g6E-mX-38A" secondAttribute="trailing" constant="60" id="QXU-FD-8UR"/>
                     <constraint firstAttribute="bottom" secondItem="3Uw-DN-Frg" secondAttribute="bottom" constant="16" id="acD-br-IMc"/>
                     <constraint firstAttribute="trailing" secondItem="kBK-E1-M8P" secondAttribute="trailing" constant="25" id="baE-FD-BiX"/>
                     <constraint firstItem="iKL-cM-ej1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13.5" id="cg8-ca-CiE"/>
@@ -99,7 +99,7 @@
     </objects>
     <resources>
         <namedColor name="subTextColor">
-            <color red="0.080000000000000002" green="0.080000000000000002" blue="0.080000000000000002" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.079999998211860657" green="0.079999998211860657" blue="0.079999998211860657" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

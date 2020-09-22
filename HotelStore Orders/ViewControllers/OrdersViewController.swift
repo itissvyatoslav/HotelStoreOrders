@@ -95,37 +95,27 @@ class OrdersViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         cons3.constant = self.view.frame.width * 0.1
         cons4.constant = self.view.frame.width * 0.1
         cons5.constant = self.view.frame.width * 0.09
+        pickerView.isHidden = true
+        backgroundView.isHidden = true
     }
     
     
-    var toolBar = UIToolbar()
-    var picker  = UIPickerView()
-    var hotelPicker = [String]()
+    //MARK:- Picker
     
-    @IBAction func hotelAction(_ sender: Any) {
-        hotelPicker = model.hotels
-        var picker2  = UIPickerView()
-        picker2 = UIPickerView.init()
-        picker2.delegate = self
-        picker2.dataSource = self
-        picker2.backgroundColor = UIColor.white
-        picker2.setValue(UIColor.black, forKey: "textColor")
-        picker2.autoresizingMask = .flexibleWidth
-        picker2.contentMode = .center
-        picker2.frame = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 300)
-        picker = picker2
-        self.view.addSubview(picker)
-        
-        var toolBar2 = UIToolbar()
-        toolBar2 = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 50))
-        toolBar2.items = [UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(onDoneButtonTapped))]
-        toolBar = toolBar2
-        self.view.addSubview(toolBar)
+    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var pickerView: UIView!
+    @IBOutlet weak var picker: UIPickerView!
+    
+    @IBAction func hotelButton(_ sender: Any) {
+        backgroundView.isHidden = false
+        pickerView.layer.cornerRadius = 25
+        pickerView.isHidden = false
+        picker.delegate = self
+        picker.dataSource = self
     }
     
-    @objc func onDoneButtonTapped() {
-        toolBar.removeFromSuperview()
-        picker.removeFromSuperview()
+    
+    @IBAction func doneButton(_ sender: Any) {
         if !isPickerChanged {
             selectedHotelInPicker = ""
             hotelNameLabel.text = "All hotels"
@@ -140,6 +130,8 @@ class OrdersViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 }
             }
         }
+        pickerView.isHidden = true
+        backgroundView.isHidden = true
         orderTable.reloadData()
         isPickerChanged = false
     }
@@ -149,14 +141,14 @@ class OrdersViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return hotelPicker.count + 1
+        return model.hotels.count + 1
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if row == 0 {
             return "All"
         } else {
-            return hotelPicker[row - 1]
+            return model.hotels[row - 1]
         }
     }
 
@@ -166,8 +158,8 @@ class OrdersViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             hotelNameLabel.text = "All hotels"
             selectedHotelInPicker = ""
         } else {
-            hotelNameLabel.text = hotelPicker[row - 1]
-            selectedHotelInPicker = hotelPicker[row - 1]
+            hotelNameLabel.text = model.hotels[row - 1]
+            selectedHotelInPicker = model.hotels[row - 1]
         }
         
     }

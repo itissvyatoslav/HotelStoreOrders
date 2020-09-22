@@ -248,6 +248,7 @@ class NetworkService {
             }
             semaphore.signal()
         }.resume()
+        print("Send")
         semaphore.wait()
     }
     

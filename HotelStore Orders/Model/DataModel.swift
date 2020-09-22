@@ -42,4 +42,6 @@ class DataModel {
     var orders = [orderStruct]()
     var editedOrders = [orderStruct]()
     var hotels = [String]()
+    
+    var device_token = ""
 }

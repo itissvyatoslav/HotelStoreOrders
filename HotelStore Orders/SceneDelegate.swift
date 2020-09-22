@@ -25,6 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         print(DataModel.sharedData.token)
         //DataModel.sharedData.token = "default"
         if DataModel.sharedData.token != "default token" && NetworkService().getOrders() {
+            NetworkService().regPushes(device_token: DataModel.sharedData.device_token)
             print("startID")
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController (withIdentifier: "startID") as! UINavigationController

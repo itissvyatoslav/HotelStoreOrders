@@ -37,7 +37,7 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     
     override func viewWillAppear(_ animated: Bool) {
-        productsTable.estimatedRowHeight = 200
+        productsTable.estimatedRowHeight = 50
         productsTable.rowHeight = UITableView.automaticDimension
         self.navigationItem.backBarButtonItem?.title = ""
     }
@@ -50,12 +50,12 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         setShadow()
         saveButton.layer.cornerRadius = 22.5
         let distance = saveButton.frame.minY - view.frame.minY
-        print(distance)
+        //print(distance)
         scrollView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: distance + 50)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationItem.title = "ORDER"
         
-        scrollHeight.constant = distance - 1000
+        //scrollHeight.constant = distance - 1000
     }
     
     private func registerTableViewCells() {
@@ -68,7 +68,7 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         productsTable.rowHeight = UITableView.automaticDimension
         productsTable.tableFooterView = UIView(frame: .zero)
         
-        tableHeight.constant = self.productsTable.contentSize.height * CGFloat(model.orders[orderNumber].products.count) + 15
+        tableHeight.constant = self.productsTable.contentSize.height// * CGFloat(model.editedOrders[orderNumber].products.count - 1) + 15
     }
     
     private func setLabels(){
@@ -115,8 +115,10 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     let pickerData = ["New", "Processing", "Finished", "Canceled", "Canceled by buyer"]
     
-    var toolBar = UIToolbar()
-    var picker  = UIPickerView()
+    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var pickerView: UIView!
+    @IBOutlet weak var picker: UIPickerView!
+    
     
     //MARK: - SAVE
     @IBAction func saveTapped(_ sender: Any) {
@@ -136,30 +138,22 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
 
     
     @IBAction func statusTapped(_ sender: Any) {
-        picker = UIPickerView.init()
         picker.delegate = self
         picker.dataSource = self
-        picker.backgroundColor = UIColor.white
-        picker.setValue(UIColor.black, forKey: "textColor")
-        picker.autoresizingMask = .flexibleWidth
-        picker.contentMode = .center
-        picker.frame = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 300)
-        self.view.addSubview(picker)
-
-        toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 50))
-        toolBar.items = [UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(onDoneButtonTapped))]
-        self.view.addSubview(toolBar)
+        backgroundView.isHidden = false
+        pickerView.isHidden = false
     }
     
-    @objc func onDoneButtonTapped() {
-        toolBar.removeFromSuperview()
-        picker.removeFromSuperview()
+    @IBAction func doneButton(_ sender: Any) {
+        backgroundView.isHidden = true
+        pickerView.isHidden = true
         if !isPickerChanged {
             statusLabel.textColor = UIColor(red: 182/255, green: 9/255, blue: 73/255, alpha: 1)
             statusLabel.text = "New"
         }
         isPickerChanged = false
     }
+    
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -196,6 +190,9 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         const2.constant = self.view.frame.width * 0.114
         const3.constant = self.view.frame.width * 0.226
         const4.constant = self.view.frame.width * 0.077
+        backgroundView.isHidden = true
+        pickerView.layer.cornerRadius = 25
+        pickerView.isHidden = true
     }
 }
 

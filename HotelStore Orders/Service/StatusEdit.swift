@@ -13,7 +13,7 @@ class StatusEdit {
     var inputStream: InputStream!
     var outputStream: OutputStream!
     
-    func makeConnection(){
+    func makeConnection(status: String){
         let manager = SocketManager(socketURL: URL(string: "https://crm.hotelstore.sg/api/order")!, config: [.log(true), .compress])
         let socket = manager.defaultSocket
 
@@ -25,7 +25,7 @@ class StatusEdit {
             guard let cur = data[0] as? Double else { return }
             
             socket.emitWithAck("canUpdate", cur).timingOut(after: 0) {data in
-                socket.emit("update", ["amount": cur + 2.50])
+                socket.emit(status, ["amount": cur + 2.50])
             }
 
             ack.with("Got your currentAmount", "dude")
