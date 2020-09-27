@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rvv-Rx-Txe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rvv-Rx-Txe">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -555,7 +555,7 @@
                                                 <color key="backgroundColor" white="0.57999999999999996" alpha="0.56000000000000005" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wgF-xI-z2g">
-                                                <rect key="frame" x="40" y="410" width="334" height="334"/>
+                                                <rect key="frame" x="40" y="242" width="334" height="334"/>
                                                 <subviews>
                                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lKq-mR-CpF">
                                                         <rect key="frame" x="0.0" y="0.0" width="334" height="334"/>
@@ -686,6 +686,7 @@
                     <navigationItem key="navigationItem" id="HxQ-OT-Xr0"/>
                     <connections>
                         <outlet property="backgroundView" destination="fqF-6S-w2F" id="2Sd-9K-Dsc"/>
+                        <outlet property="bigPrice" destination="8BG-gv-PQk" id="ntN-rF-HtK"/>
                         <outlet property="buttonView" destination="V9F-tN-U9c" id="ORw-sr-q5J"/>
                         <outlet property="commentLabel" destination="jfZ-ST-akI" id="NzF-B0-gdu"/>
                         <outlet property="const1" destination="Ly4-WF-nxe" id="V9E-lu-T0P"/>
@@ -703,6 +704,7 @@
                         <outlet property="saveButton" destination="z6b-9G-azV" id="YuG-KV-XXh"/>
                         <outlet property="scrollHeight" destination="WCf-hu-kav" id="YQ3-Hp-q7e"/>
                         <outlet property="scrollView" destination="28a-Bq-gpC" id="q1Z-T0-zl4"/>
+                        <outlet property="smallPrice" destination="xyV-iZ-6hF" id="AIb-OD-Mi0"/>
                         <outlet property="statusLabel" destination="aBT-HA-8Oc" id="cWQ-NA-ccO"/>
                         <outlet property="tableHeight" destination="QAs-0g-u4r" id="uOy-nz-WsD"/>
                         <outlet property="timeLabel" destination="Isv-hu-rzM" id="iV6-u9-JnK"/>

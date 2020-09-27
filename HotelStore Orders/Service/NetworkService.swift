@@ -93,7 +93,7 @@ class NetworkService {
             var hotel: hotelStruct
             var id: Int
             var manager: managerStruct?
-            var position: Int
+            var position: Int?
             var room: String
             var status: String
             var time: String
@@ -114,16 +114,16 @@ class NetworkService {
         }
         
         struct productStruct: Codable {
-            var brand: String
+            var brand: String?
             var category: String?
             var category_id: Int?
             var description: String?
             var id: Int?
             var images: [imageStruct]?
-            var price: Double
+            var price: Double?
             var quantity: Int?
             var short_description: String?
-            var title: String
+            var title: String?
         }
         
         struct productStruct2: Codable {
@@ -175,7 +175,7 @@ class NetworkService {
                         self.model.addOrder.manager_id = json.data![number].manager?.id ?? -1
                         self.model.addOrder.id = json.data![number].id
                         self.model.addOrder.comment = json.data![number].comment
-                        self.model.addOrder.number = json.data![number].position
+                        self.model.addOrder.number = json.data![number].position ?? 0
                         self.model.addOrder.date = json.data![number].date
                         self.model.addOrder.time = json.data![number].time
                         self.model.addOrder.userName = json.data![number].customer.first_name
@@ -187,10 +187,10 @@ class NetworkService {
                         }
                         self.model.addOrder.products.removeAll()
                         for subNumber in 0..<json.data![number].cart.count {
-                            self.model.addProduct.brand = json.data![number].cart[subNumber].product.brand
-                            self.model.addProduct.title = json.data![number].cart[subNumber].product.title
+                            self.model.addProduct.brand = json.data![number].cart[subNumber].product.brand ?? ""
+                            self.model.addProduct.title = json.data![number].cart[subNumber].product.title ?? ""
                             self.model.addProduct.QTY = json.data![number].cart[subNumber].quantity
-                            self.model.addProduct.price = json.data![number].cart[subNumber].product.price
+                            self.model.addProduct.price = json.data![number].cart[subNumber].product.price ?? 0
                             self.model.addOrder.products.append(self.model.addProduct)
                         }
                         self.model.orders.append(self.model.addOrder)

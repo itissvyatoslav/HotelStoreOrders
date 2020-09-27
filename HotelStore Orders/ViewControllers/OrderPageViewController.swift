@@ -34,6 +34,8 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     @IBOutlet weak var tableHeight: NSLayoutConstraint!
     @IBOutlet weak var scrollHeight: NSLayoutConstraint!
+    @IBOutlet weak var smallPrice: UILabel!
+    @IBOutlet weak var bigPrice: UILabel!
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,7 +57,7 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationItem.title = "ORDER"
         
-        //scrollHeight.constant = distance - 1000
+        scrollHeight.constant = distance - 1000
     }
     
     private func registerTableViewCells() {
@@ -68,7 +70,9 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         productsTable.rowHeight = UITableView.automaticDimension
         productsTable.tableFooterView = UIView(frame: .zero)
         
-        tableHeight.constant = self.productsTable.contentSize.height// * CGFloat(model.editedOrders[orderNumber].products.count - 1) + 15
+        tableHeight.constant = ( self.productsTable.contentSize.height) + 15// * CGFloat(model.editedOrders[orderNumber].products.count)// + 15
+        print(self.productsTable.contentSize.height, "!!!!", model.editedOrders[orderNumber].products.count)
+        scrollHeight.constant = tableHeight.constant + 568
     }
     
     private func setLabels(){
@@ -91,6 +95,17 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         }
         statusLabel.text = model.editedOrders[orderNumber].status
         setPrice()
+        var currency: String {
+            let locale = Locale.current
+            let localesSNG = ["AZ", "RU", "BE", "HY", "KK", "KY", "ru_MD", "TG", "UZ"]
+            if localesSNG.contains(locale.regionCode ?? "RU") {
+                return "₽"
+            } else {
+                return "S$"
+            }
+        }
+        smallPrice.text = "Price,\(currency)"
+        bigPrice.text = "Total price,\(currency)"
     }
     
     private func setPrice(){

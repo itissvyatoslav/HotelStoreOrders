@@ -22,6 +22,7 @@
 		EB363BA924EBF37800D59B1E /* OrderPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB363BA824EBF37800D59B1E /* OrderPageViewController.swift */; };
 		EB363BAC24EC172D00D59B1E /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB363BAA24EC172D00D59B1E /* ProductCell.swift */; };
 		EB363BAD24EC172D00D59B1E /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB363BAB24EC172D00D59B1E /* ProductCell.xib */; };
+		EB56AE79251C8B0200923FA7 /* Country_Music_Bed_10.aiff in Resources */ = {isa = PBXBuildFile; fileRef = EB56AE78251C8B0200923FA7 /* Country_Music_Bed_10.aiff */; };
 		EB86E99F24ECFD22004B6C72 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB86E99E24ECFD22004B6C72 /* NetworkService.swift */; };
 		EBFDA464250F3CE10007A0FE /* StatusEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFDA463250F3CE10007A0FE /* StatusEdit.swift */; };
 /* End PBXBuildFile section */
@@ -46,6 +47,7 @@
 		EB363BA824EBF37800D59B1E /* OrderPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPageViewController.swift; sourceTree = "<group>"; };
 		EB363BAA24EC172D00D59B1E /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		EB363BAB24EC172D00D59B1E /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
+		EB56AE78251C8B0200923FA7 /* Country_Music_Bed_10.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; name = Country_Music_Bed_10.aiff; path = ../../Downloads/Country_Music_Bed_10.aiff; sourceTree = "<group>"; };
 		EB57035124F78EC60044963A /* HotelStore Orders.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "HotelStore Orders.entitlements"; sourceTree = "<group>"; };
 		EB86E99E24ECFD22004B6C72 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		EBFDA463250F3CE10007A0FE /* StatusEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusEdit.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 		EB363B7B24EB94ED00D59B1E = {
 			isa = PBXGroup;
 			children = (
+				EB56AE78251C8B0200923FA7 /* Country_Music_Bed_10.aiff */,
 				EB363B8624EB94ED00D59B1E /* HotelStore Orders */,
 				EB363B8524EB94ED00D59B1E /* Products */,
 				C18C319E742A98995ECBCEE6 /* Pods */,
@@ -208,6 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB363B9424EB94F500D59B1E /* LaunchScreen.storyboard in Resources */,
+				EB56AE79251C8B0200923FA7 /* Country_Music_Bed_10.aiff in Resources */,
 				EB363B9124EB94F500D59B1E /* Assets.xcassets in Resources */,
 				EB363BAD24EC172D00D59B1E /* ProductCell.xib in Resources */,
 				EB363BA724EBE66F00D59B1E /* OrderCell.xib in Resources */,
@@ -421,7 +425,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "HotelStore Orders/HotelStore Orders.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = 2UW772375M;
 				INFOPLIST_FILE = "HotelStore Orders/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -444,7 +448,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "HotelStore Orders/HotelStore Orders.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = 2UW772375M;
 				INFOPLIST_FILE = "HotelStore Orders/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

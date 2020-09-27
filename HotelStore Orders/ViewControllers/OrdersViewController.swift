@@ -31,6 +31,7 @@ class OrdersViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     override func viewDidLoad() {
+        NetworkService().regPushes(device_token: model.device_token)
         if model.orders.isEmpty {
             NetworkService().getOrders()
         }
