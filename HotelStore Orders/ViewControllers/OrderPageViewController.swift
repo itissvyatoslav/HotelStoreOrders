@@ -53,11 +53,11 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         saveButton.layer.cornerRadius = 22.5
         let distance = saveButton.frame.minY - view.frame.minY
         //print(distance)
-        scrollView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: distance + 50)
+        //scrollView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: distance + 50)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationItem.title = "ORDER"
         
-        scrollHeight.constant = distance - 1000
+        //scrollHeight.constant = distance - 1000
     }
     
     private func registerTableViewCells() {
@@ -72,7 +72,7 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         
         tableHeight.constant = ( self.productsTable.contentSize.height) + 15// * CGFloat(model.editedOrders[orderNumber].products.count)// + 15
         print(self.productsTable.contentSize.height, "!!!!", model.editedOrders[orderNumber].products.count)
-        scrollHeight.constant = tableHeight.constant + 568
+        //scrollHeight.constant = tableHeight.constant + 568
     }
     
     private func setLabels(){
@@ -113,6 +113,7 @@ class OrderPageViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         for product in model.editedOrders[orderNumber].products{
             totalPrice = totalPrice + product.price * Double(product.QTY)
         }
+        totalPrice = Double(round(1000*totalPrice)/1000)
         totalPriceLabel.text =  "\(totalPrice)"
     }
     

@@ -175,16 +175,43 @@ class OrdersViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     var socketIOClient: SocketIOClient!
     
     func socketManager(){
+        
+        struct orderStruct: Codable {
+            var comment: String?
+            var goods_list: [String]?
+            var message: String
+            var order_id: Int
+            var order_position: Int
+            var room_number: String
+            var status_update: String
+        }
+        
         manager = SocketManager(socketURL: URL(string: "https://crm.hotelstore.sg")!, config: [.log(true), .compress])
         socketIOClient = manager.socket(forNamespace: "/notifs")
         
         socketIOClient.on(clientEvent: .connect) {data, ack in
-            print(data)
+            //print(data)
+            self.socketIOClient.emit("join", self.model.token)
             print("socket connected")
         }
         
+        socketIOClient.on("NewStatus") {data, ack in
+            print("Status:")
+            print(data)
+            //do {
+            //    let json = try JSONDecoder().decode(orderStruct.self, from: data)
+            //} catch {
+            //
+            //}
+        }
+        
+        socketIOClient.on("newOrder") {data, ack in
+            print("New order:")
+            print(data)
+        }
+        
         socketIOClient.on(clientEvent: .error) { (data, eck) in
-            print("!!!", data)
+            print(data)
             print("socket error")
         }
         
