@@ -189,25 +189,44 @@ class OrdersViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         manager = SocketManager(socketURL: URL(string: "https://crm.hotelstore.sg")!, config: [.log(true), .compress])
         socketIOClient = manager.socket(forNamespace: "/notifs")
         
+        
+        
         socketIOClient.on(clientEvent: .connect) {data, ack in
             //print(data)
             self.socketIOClient.emit("join", self.model.token)
             print("socket connected")
         }
         
+        
+        
         socketIOClient.on("NewStatus") {data, ack in
             print("Status:")
-            print(data)
-            //do {
-            //    let json = try JSONDecoder().decode(orderStruct.self, from: data)
-            //} catch {
-            //
-            //}
+            let jsonResult = data[0] as! Dictionary<String, AnyObject>
+            let order_number = jsonResult["order_position"] as! Int
+            let newStatus = jsonResult["message"] as! String
+            for number in 0..<self.model.orders.count {
+                if order_number == self.model.orders[number].number {
+                    self.model.orders[number].status = newStatus
+                    self.model.editedOrders = self.model.orders
+                    self.orderTable.reloadData()
+                    if self.model.access == "admin" {
+                        self.hotelNameLabel.text = "All hotels"
+                    }
+                    break
+                }
+            }
         }
         
         socketIOClient.on("newOrder") {data, ack in
             print("New order:")
             print(data)
+            if NetworkService().getOrders() {
+                self.model.editedOrders = self.model.orders
+                self.orderTable.reloadData()
+                if self.model.access == "admin" {
+                    self.hotelNameLabel.text = "All hotels"
+                }
+            }
         }
         
         socketIOClient.on(clientEvent: .error) { (data, eck) in
@@ -223,6 +242,11 @@ class OrdersViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         socketIOClient.on(clientEvent: SocketClientEvent.reconnect) { (data, eck) in
             print(data)
             print("socket reconnect")
+        }
+        
+        socketIOClient.on("response") {data, ack in
+            print("response:")
+            print(data)
         }
         
         socketIOClient.connect()

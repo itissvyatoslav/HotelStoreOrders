@@ -12,14 +12,45 @@ import UserNotifications
 @available(iOS 13.0, *)
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    let model = DataModel.sharedData
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        var modelNumber = 0
         UIApplication.shared.applicationIconBadgeNumber = 0
         // Override point for customization after application launch.
         registerForPushNotifications()
         UNUserNotificationCenter.current().delegate = self
+        
+        let notificationOption = launchOptions?[.remoteNotification]
+        
+        
+        guard let notification = notificationOption as? [String: AnyObject], let aps = notification["aps"] as? [String: AnyObject], let orderStruct = aps["custom"] as? [String: AnyObject] else {
+            return false
+        }
+        guard let orderNumber = orderStruct["OrderNumber"] as? Int else {
+            return false
+        }
+        for number in 0..<self.model.orders.count {
+            if orderNumber == self.model.orders[number].number {
+                modelNumber = number
+                break
+            }
+        }
+        
+        guard let rootViewController = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController else {
+            return false
+        }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if let vc = storyboard.instantiateViewController(withIdentifier: "OrderPageViewController") as? OrderPageViewController, let navController = rootViewController as? UINavigationController {
+            vc.orderNumber = modelNumber
+            navController.pushViewController(vc, animated: true)
+        }
+        
         return true
     }
     
@@ -83,7 +114,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate{
     
     // This function will be called right after user tap on the notification
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        guard var rootViewController = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController else {
+        guard let rootViewController = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController else {
             return
         }
         
@@ -99,15 +130,34 @@ extension AppDelegate: UNUserNotificationCenterDelegate{
             }
             completionHandler()
         }
-        
-        func application(_ application: UIApplication, didReceiveRemoteNotification data: [AnyHashable : Any]) {
-            // Print notification payload data
-            print("Push notification received: \(data)")
-            
-            let aps = data[AnyHashable("aps")]!
-            
-            print(aps)
-        }
     }
     
+    func application(_ application: UIApplication, didReceiveRemoteNotification data: [AnyHashable : Any]) {
+        // Print notification payload data
+        var modelNumber = 0
+        guard let aps = data["aps"] as? [String: AnyObject], let orderStruct = aps["custom"] as? [String: AnyObject] else {
+            return
+        }
+        guard let orderNumber = orderStruct["OrderNumber"] as? Int else {
+            return
+        }
+        for number in 0..<self.model.orders.count {
+            if orderNumber == self.model.orders[number].number {
+                modelNumber = number
+                break
+            }
+        }
+        
+        guard let rootViewController = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController else {
+            return
+        }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if let vc = storyboard.instantiateViewController(withIdentifier: "OrderPageViewController") as? OrderPageViewController, let navController = rootViewController as? UINavigationController {
+            vc.orderNumber = modelNumber
+            navController.pushViewController(vc, animated: true)
+        }
+    }
 }
+

@@ -90,7 +90,7 @@ class NetworkService {
             var comment: String?
             var customer: customerStruct
             var date: String
-            var hotel: hotelStruct
+            var hotel: hotelStruct?
             var id: Int
             var manager: managerStruct?
             var position: Int?
@@ -181,9 +181,11 @@ class NetworkService {
                         self.model.addOrder.userName = json.data![number].customer.first_name
                         self.model.addOrder.roomNumber = json.data![number].room
                         self.model.addOrder.status = json.data![number].status
-                        self.model.addOrder.hotelName = json.data![number].hotel.name
-                        if !self.model.hotels.contains(json.data![number].hotel.name) {
-                            self.model.hotels.append(json.data![number].hotel.name)
+                        self.model.addOrder.hotelName = json.data![number].hotel?.name ?? "undefined"
+                        if self.model.addOrder.hotelName != "undefined" {
+                            if !self.model.hotels.contains(json.data![number].hotel?.name ?? "undefined") {
+                                self.model.hotels.append(json.data![number].hotel?.name ?? "undefined")
+                            }
                         }
                         self.model.addOrder.products.removeAll()
                         for subNumber in 0..<json.data![number].cart.count {
@@ -196,7 +198,7 @@ class NetworkService {
                         self.model.orders.append(self.model.addOrder)
                     }
                     
-                    self.model.hotelName = json.data![0].hotel.name
+                    self.model.hotelName = json.data![0].hotel?.name ?? "undefined"
                 }
                 success = json.success
             } catch {

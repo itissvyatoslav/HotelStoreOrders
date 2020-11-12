@@ -9,7 +9,7 @@
 import UIKit
 import Locksmith
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     //MARK: - OUTLETS
     
@@ -46,6 +46,8 @@ class LoginViewController: UIViewController {
     }
 
     private func setGesture(){
+        loginTF.delegate = self
+        passwordTF.delegate = self
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
     }
@@ -81,5 +83,9 @@ class LoginViewController: UIViewController {
         }
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 }
 
